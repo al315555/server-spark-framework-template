@@ -17,8 +17,7 @@ public class HelloWorld {
     public static final String HOME_PAGE_HTML = "<!DOCTYPE html>" +
             "<html>" +
             "<meta charset=\"UTF-8\">" +
-            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
-            "<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/3/w3.css\">" +
+            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"+
             "<body>" +
             "<!-- Content will go here -->" +
             "HELLO WORLD!" +
