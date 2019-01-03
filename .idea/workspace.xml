@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b878c62-b5b1-4d02-85f0-e315704b8dbb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/heroku/app/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/target/heroku/app/Procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/heroku/app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/heroku/app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/heroku/app/target/classes/main/HelloWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/heroku/app/target/classes/main/HelloWorld.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/heroku/app/target/letmoney.first.es-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/heroku/app/target/letmoney.first.es-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/heroku/app/target/letmoney.first.es-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/heroku/app/target/letmoney.first.es-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/heroku/slug.tgz" beforeDir="false" afterPath="$PROJECT_DIR$/target/heroku/slug.tgz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/letmoney.first.es-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/letmoney.first.es-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/letmoney.first.es-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/letmoney.first.es-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
@@ -42,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+              <caret line="61" column="102" selection-start-line="61" selection-start-column="102" selection-end-line="61" selection-end-column="102" />
             </state>
           </provider>
         </entry>
@@ -141,6 +143,11 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Letmoney" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Letmoney" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -152,7 +159,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546539367532" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546539733394" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -234,18 +241,18 @@
       <option name="presentableId" value="Default" />
       <updated>1544732929464</updated>
       <workItem from="1544732943570" duration="6769000" />
-      <workItem from="1546530981199" duration="8295000" />
+      <workItem from="1546530981199" duration="8658000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15064000" />
+    <option name="totallyTimeSpent" value="15427000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -269,7 +276,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.32980332" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32980332" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" weight="0.32980332" />
@@ -294,7 +301,7 @@
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+          <caret line="61" column="102" selection-start-line="61" selection-start-column="102" selection-end-line="61" selection-end-column="102" />
         </state>
       </provider>
     </entry>
