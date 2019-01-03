@@ -14,7 +14,7 @@ import static spark.Spark.*;
 
 public class HelloWorld {
 
-    private static final String HOME_PAGE_HTML = "<!DOCTYPE html>" +
+    public static final String HOME_PAGE_HTML = "<!DOCTYPE html>" +
             "<html>" +
             "<meta charset=\"UTF-8\">" +
             "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
@@ -24,21 +24,21 @@ public class HelloWorld {
             "HELLO WORLD!" +
             "</body>" +
             "</html>";
-    private static final String KEY_STORE_FILE_PATH = "deploy/keystore.jks";
-    private static final String KEY_STORE_PASSWORD = "password";
-    private static final String TRUST_STORE_FILE_PATH = null;
-    private static final String TRUST_STORE_PASSWORD = null;
-    private static final int THREAD_TIMEOUT_MILLIS = 100000;
-    private static final int MIN_THREADS = 1;
-    private static final int MAX_THREADS = 10;
-    private static final int PORT_BY_DEFAULT = 4567;
+    public static final String KEY_STORE_FILE_PATH = "deploy/keystore.jks";
+    public static final String KEY_STORE_PASSWORD = "password";
+    public static final String TRUST_STORE_FILE_PATH = null;
+    public static final String TRUST_STORE_PASSWORD = null;
+    public static final int THREAD_TIMEOUT_MILLIS = 100000;
+    public static final int MIN_THREADS = 1;
+    public static final int MAX_THREADS = 10;
+    public static final int PORT_BY_DEFAULT = 4567;
 
 
-    private static void mainPage() {
+    static void mainPage() {
         get("/home", (req, res) -> HOME_PAGE_HTML);
     }
 
-    private static int getHerokuAssignedPort() {
+    static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
@@ -68,15 +68,5 @@ public class HelloWorld {
             // Appease something
         });
     */
-    public static void main(String[] args) {
-        initExceptionHandler((e) -> {
-            //Logger.class.error("ignite failed", e);
-            System.out.println("Exception --> ->");
-            e.printStackTrace();
-            System.exit(100);
-        });
-        secure(KEY_STORE_FILE_PATH, KEY_STORE_PASSWORD, TRUST_STORE_FILE_PATH, TRUST_STORE_PASSWORD);
-        port(getHerokuAssignedPort());
-        mainPage();
-    }
+
 }
