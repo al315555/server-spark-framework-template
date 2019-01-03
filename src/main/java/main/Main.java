@@ -10,10 +10,11 @@ public class Main {
             e.printStackTrace();
             System.exit(100);
         });
-        secure(HelloWorld.KEY_STORE_FILE_PATH,
+        /*secure(HelloWorld.KEY_STORE_FILE_PATH,
                 HelloWorld.KEY_STORE_PASSWORD,
                 HelloWorld.TRUST_STORE_FILE_PATH,
                 HelloWorld.TRUST_STORE_PASSWORD);
+        */
         port(HelloWorld.getHerokuAssignedPort());
         HelloWorld.mainPage();
     }
