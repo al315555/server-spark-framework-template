@@ -17,6 +17,7 @@ public class DatabaseConnection {
     private static Connection getConnection() throws Exception {
         //long timeActivated = Calendar.getInstance().getTimeInMillis()-firstConnection;
         if (connection == null || connection.isClosed() ) {
+            connection = null;
             synchronized (DatabaseConnection.class) {
                 if (connection == null) {
                     //get connection with configuration of app.properties
