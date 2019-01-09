@@ -3,6 +3,7 @@ package persistence.connection;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.util.Calendar;
 import java.util.Properties;
 
 public class DatabaseConnection {
@@ -11,8 +12,11 @@ public class DatabaseConnection {
 
     private static Connection connection = null;
 
+    private static long firstConnection = 0;
+
     private static Connection getConnection() throws Exception {
-        if (connection == null) {
+        //long timeActivated = Calendar.getInstance().getTimeInMillis()-firstConnection;
+        if (connection == null || connection.isClosed() ) {
             synchronized (DatabaseConnection.class) {
                 if (connection == null) {
                     //get connection with configuration of app.properties
@@ -24,6 +28,7 @@ public class DatabaseConnection {
                     try {
                         conn = DriverManager.getConnection(props.getProperty("url"), props);
                         connection = conn;
+                        firstConnection = Calendar.getInstance().getTimeInMillis();
                     } catch (Exception e) {
                         e.printStackTrace();
                         throw e; //TODO refactor
