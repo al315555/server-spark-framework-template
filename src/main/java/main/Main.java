@@ -11,14 +11,7 @@ public class Main {
             //Logger.class.error("ignite failed", e);
             System.out.println("Exception --> ->");
             e.printStackTrace();
-            try {
-                DatabaseConnection.closeInstance();
-            }catch(Exception ex){
-                ex.printStackTrace();
-                System.err.println("Error: Cannot close database.");
-            }finally {
-                System.exit(100);
-            }
+            System.exit(100);
         });
         /*secure(ServerConfiguration.KEY_STORE_FILE_PATH,
                 ServerConfiguration.KEY_STORE_PASSWORD,

@@ -1,5 +1,9 @@
 package persistence.connection;
 
+import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.dbcp.BasicDataSourceFactory;
+
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -10,44 +14,23 @@ public class DatabaseConnection {
 
     private DatabaseConnection(){}
 
-    private static Connection connection = null;
-
-    private static long firstConnection = 0;
+    private static DataSource dataSource = null;
 
     private static Connection getConnection() throws Exception {
-        //long timeActivated = Calendar.getInstance().getTimeInMillis()-firstConnection;
-        if (connection == null || connection.isClosed() ) {
-            connection = null;
-            synchronized (DatabaseConnection.class) {
-                if (connection == null) {
-                    //get connection with configuration of app.properties
-                    Connection conn = null;
-                    Properties props = new Properties();
-                    InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("app.properties");
-                    props.load(is);
-                    is.close();
-                    try {
-                        conn = DriverManager.getConnection(props.getProperty("url"), props);
-                        connection = conn;
-                        firstConnection = Calendar.getInstance().getTimeInMillis();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        throw e; //TODO refactor
-                    }
-                }
-            }
+        if (dataSource == null) {
+            Properties props = new Properties();
+            InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("app.properties");
+            props.load(is);
+            is.close();
+            dataSource = BasicDataSourceFactory.createDataSource(props);
         }
-        return connection;
+        return dataSource.getConnection();
     }
 
 
     public static Connection getInstance() throws Exception{
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = getConnection();
         return conn;
-    }
-
-    public static void closeInstance() throws Exception{
-        DatabaseConnection.getConnection().close();
     }
 
     public static void testConnection() throws IOException, Exception{

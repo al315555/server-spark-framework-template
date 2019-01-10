@@ -6,9 +6,11 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import persistence.dao.InstanceFactory;
 import persistence.model.ApplicationMapper;
+import persistence.model.ApplicationMapperList;
 import spark.embeddedserver.jetty.EmbeddedJettyFactory;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.function.IntUnaryOperator;
 import java.util.logging.Logger;
 
@@ -37,7 +39,7 @@ public class ServerConfiguration {
 
     static void initRESTMethods() {
         get("/home", (req, res) -> HOME_PAGE_HTML);
-        get("/userData/:idUser", (req, res) -> {
+        get("/user/:idUser", (req, res) -> {
             ApplicationMapper resultado= InstanceFactory.getInstance(
                     InstanceFactory.USUARIO_DAO)
                     .selectOne(
@@ -48,9 +50,16 @@ public class ServerConfiguration {
             res.type("application/json");
             return resultado.getJSON();
         });
+        get("/allUsers", (req, res) -> {
+            ApplicationMapperList resultado= InstanceFactory.getInstance(
+                    InstanceFactory.USUARIO_DAO)
+                    .selectList(null );
+            res.type("application/json");
+            return resultado.getJSON();
+        });
         get("/showCase", (req, res) -> {
 
-            return "/home;</br>/userData/{id};</br>/showCase";
+            return "/home;</br>/user/{id};</br>/showCase;</br>/allUsers;";
         });
         // Using string/html
         notFound("<html><body><h1>Custom 404 handling</h1></body></html>");
