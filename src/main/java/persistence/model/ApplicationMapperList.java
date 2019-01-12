@@ -1,8 +1,10 @@
 package persistence.model;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
-public class ApplicationMapperList implements ApplicationMapper{
+public class ApplicationMapperList extends ApplicationMapper{
 
     private List<ApplicationMapper> applicationMapperList = null;
 
@@ -20,14 +22,7 @@ public class ApplicationMapperList implements ApplicationMapper{
 
     @Override
     public String getJSON() {
-        StringBuilder stringBuilder = new StringBuilder("{\n");
-        for ( ApplicationMapper element : applicationMapperList){
-            stringBuilder.append(element.getJSON());
-            stringBuilder.append(",\n");
-        }
-        stringBuilder.delete(stringBuilder.length()-2,stringBuilder.length());
-        stringBuilder.append("\n};");
-        return stringBuilder.toString();
+        return "{"+new Gson().toJson(applicationMapperList)+"}";
     }
 
 }

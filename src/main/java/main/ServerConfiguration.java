@@ -1,18 +1,25 @@
 package main;
 
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+import java.security.Key;
 
-import org.eclipse.jetty.server.AbstractNCSARequestLog;
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.util.thread.QueuedThreadPool;
+import com.google.gson.Gson;
+import io.jsonwebtoken.*;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.Claims;
+
+import model.usuario.ApplicationUsuario;
+import persistence.connection.Auth;
 import persistence.dao.InstanceFactory;
 import persistence.model.ApplicationMapper;
 import persistence.model.ApplicationMapperList;
-import spark.embeddedserver.jetty.EmbeddedJettyFactory;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.function.IntUnaryOperator;
-import java.util.logging.Logger;
 
 import static spark.Spark.*;
 
@@ -38,8 +45,32 @@ public class ServerConfiguration {
 
 
     static void initRESTMethods() {
+
+        before("/protected/*", (request, response) -> {
+            try {
+                JJWT.verifyToken(request.headers("X-API-TOKEN"));
+            } catch (Exception e) {
+                halt(401, "You are not welcome here");
+                //don't trust the JWT!
+            }
+        });
+
+        post("/login", (req, res) -> {
+            Gson gson = new Gson();
+            ApplicationUsuario user = gson.fromJson(req.body(), ApplicationUsuario.class);
+            System.out.println(user.getUsername());
+            if (user == null || user.getUsername() == null || user.getPassword() == null ||
+                    !Auth.checkCredentials(user.getUsername(), user.getPassword())){
+                halt(401, "You are not welcome here");
+            }
+            String jwt =
+                    JJWT.generateToken(user.getUsername(), user.getUsername());
+            res.header("X-API-TOKEN", jwt);
+            return res;
+        });
+
         get("/home", (req, res) -> HOME_PAGE_HTML);
-        get("/user/:idUser", (req, res) -> {
+        get("/protected/user/:idUser", (req, res) -> {
             ApplicationMapper resultado= InstanceFactory.getInstance(
                     InstanceFactory.USUARIO_DAO)
                     .selectOne(
@@ -50,7 +81,7 @@ public class ServerConfiguration {
             res.type("application/json");
             return resultado.getJSON();
         });
-        get("/allUsers", (req, res) -> {
+        get("/protected/allUsers", (req, res) -> {
             ApplicationMapperList resultado= InstanceFactory.getInstance(
                     InstanceFactory.USUARIO_DAO)
                     .selectList(null );
@@ -62,9 +93,19 @@ public class ServerConfiguration {
             return "/home;</br>/user/{id};</br>/showCase;</br>/allUsers;";
         });
         // Using string/html
-        notFound("<html><body><h1>Custom 404 handling</h1></body></html>");
+        // Using Route
+        notFound((req, res) -> {
+            res.type("application/json");
+            return "{\"message\":\"Custom 404\"}";
+        });
+        // notFound("<html><body><h1>Custom 404 handling</h1></body></html>");
         // Using string/html
-        internalServerError("<html><body><h1>Custom 500 handling</h1></body></html>");
+        // Using Route
+        internalServerError((req, res) -> {
+            res.type("application/json");
+            return "{\"message\":\"Custom 500 handling\"}";
+        });
+        // internalServerError("<html><body><h1>Custom 500 handling</h1></body></html>");
     }
 
     static int getHerokuAssignedPort() {
@@ -74,6 +115,7 @@ public class ServerConfiguration {
         }
         return PORT_BY_DEFAULT; //return default port if heroku-port isn't set (i.e. on localhost)
     }
+
 
     /*
 

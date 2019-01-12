@@ -1,5 +1,7 @@
 package persistence.model;
 
-public interface ApplicationMapper {
-    public String getJSON();
+import com.google.gson.Gson;
+
+public abstract class ApplicationMapper {
+    public String getJSON(){return new Gson().toJson(this);}
 }

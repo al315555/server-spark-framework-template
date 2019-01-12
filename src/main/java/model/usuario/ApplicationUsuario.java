@@ -1,10 +1,27 @@
 package model.usuario;
 
+import com.google.gson.Gson;
 import persistence.model.ApplicationMapper;
 
-public class ApplicationUsuario implements ApplicationMapper {
+public class ApplicationUsuario extends ApplicationMapper {
     private long id, birthdate, last_login;
-    private String name;
+    private String name, password, username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public long getId() {
         return id;
@@ -38,8 +55,8 @@ public class ApplicationUsuario implements ApplicationMapper {
         this.id = id;
     }
 
-    @Override
+   /* @Override
     public String getJSON() {
-        return String.format("{\n\"id\":%d,\n\"name\":\"%s\"\n}", this.id, this.name);
-    }
+        return new Gson().toJson(this);//String.format("{\n\"id\":%d,\n\"name\":\"%s\"\n}", this.id, this.name);
+    }*/
 }
