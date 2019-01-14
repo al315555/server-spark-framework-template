@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>letmoney.first.es</groupId>
-    <artifactId>letmoney.first.es</artifactId>
+    <groupId>server-spark-framework-template.first.es</groupId>
+    <artifactId>server-spark-framework-template.first.es</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -55,11 +55,11 @@
                 <configuration>
                     <jdkVersion>1.8</jdkVersion>
                     <!-- Use your own application name -->
-                    <appName>letmoney</appName>
+                    <appName>server-spark-framework-template</appName>
                     <processTypes>
                         <!-- Tell Heroku how to launch your application -->
                         <!-- You might have to remove the ./ in front   -->
-                        <web>java -jar target/letmoney.first.es-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
+                        <web>java -jar target/server-spark-framework-template.first.es-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
