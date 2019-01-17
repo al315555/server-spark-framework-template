@@ -1,6 +1,6 @@
 package main;
 
-import persistence.connection.DatabaseConnection;
+import server.ServerConfiguration;
 
 import static spark.Spark.initExceptionHandler;
 import static spark.Spark.port;

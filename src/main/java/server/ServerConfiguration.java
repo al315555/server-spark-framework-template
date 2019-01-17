@@ -1,19 +1,6 @@
-package main;
-
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
-import java.security.Key;
+package server;
 
 import com.google.gson.Gson;
-import io.jsonwebtoken.*;
-
-import java.util.Base64;
-import java.util.Date;
-import java.util.Random;
-import java.util.UUID;
-
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.Claims;
 
 import model.usuario.ApplicationUsuario;
 import persistence.connection.Auth;
@@ -34,6 +21,15 @@ public class ServerConfiguration {
             "HELLO WORLD!" +
             "</body>" +
             "</html>";
+    public static final String EMAIL_SENDED_PAGE_HTML = "<!DOCTYPE html>" +
+            "<html>" +
+            "<meta charset=\"UTF-8\">" +
+            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
+            "<body>" +
+            "<!-- Content will go here -->" +
+            "EMAIL SENDED, CHECK THE MAILBOX!" +
+            "</body>" +
+            "</html>";
     public static final String KEY_STORE_FILE_PATH = "deploy/keystore.jks";
     public static final String KEY_STORE_PASSWORD = "password";
     public static final String TRUST_STORE_FILE_PATH = null;
@@ -44,7 +40,7 @@ public class ServerConfiguration {
     public static final int PORT_BY_DEFAULT = 4567;
 
 
-    static void initRESTMethods() {
+    public static void initRESTMethods() {
 
         before("/protected/*", (request, response) -> {
             try {
@@ -70,6 +66,12 @@ public class ServerConfiguration {
         });
 
         get("/home", (req, res) -> HOME_PAGE_HTML);
+        get("/sendEmailTest", (req, res) -> {
+            EmailService emailService = new EmailService();
+            emailService.init();
+            emailService.sendEmail();
+            return EMAIL_SENDED_PAGE_HTML;
+        });
         get("/protected/user/:idUser", (req, res) -> {
             ApplicationMapper resultado= InstanceFactory.getInstance(
                     InstanceFactory.USUARIO_DAO)
@@ -108,7 +110,7 @@ public class ServerConfiguration {
         // internalServerError("<html><body><h1>Custom 500 handling</h1></body></html>");
     }
 
-    static int getHerokuAssignedPort() {
+    public static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));

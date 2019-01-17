@@ -1,13 +1,11 @@
 package persistence.connection;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.dbcp.BasicDataSourceFactory;
 
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.Calendar;
 import java.util.Properties;
 
 public class DatabaseConnection {
@@ -19,7 +17,7 @@ public class DatabaseConnection {
     private static Connection getConnection() throws Exception {
         if (dataSource == null) {
             Properties props = new Properties();
-            InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("app.properties");
+            InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database.properties");
             props.load(is);
             is.close();
             dataSource = BasicDataSourceFactory.createDataSource(props);
@@ -46,7 +44,7 @@ public class DatabaseConnection {
             ResultSet rs = null;
 
             //Input Stream donde leemos el recurso donde está el archivo de propiedades
-            InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("app.properties");
+            InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database.properties");
 
             //Objeto que utilizaremos para lanzar un query a la base de datos
             PreparedStatement ps = null;

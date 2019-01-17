@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="server-spark-framework-template" />
+        <module name="server-spark-framework-template.first.es" />
       </profile>
     </annotationProcessing>
   </component>
